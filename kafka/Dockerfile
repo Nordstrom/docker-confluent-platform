@@ -1,24 +1,20 @@
-# Builds a docker image running Confluent's distribution of Apache Kafka.
-# Needs to be linked with a Zookeeper container with alias "zookeeper".
-#
-# Usage:
-#   docker build -t confluent/kafka kafka
-#   docker run -d --name kafka --link zookeeper:zookeeper confluent/kafka
+FROM nordstrom/confluent-platform:2.0
 
-FROM confluent/platform
-
-ENV CONFLUENT_USER confluent
-ENV CONFLUENT_GROUP confluent
-ENV KAFKA_LOGS "/var/log/kafka"
-ENV KAFKA_LOG_DIRS "/var/lib/kafka"
+ENV KAFKA_VERSION="0.9.0.0" \
+    CONFLUENT_USER="confluent" \
+    CONFLUENT_GROUP="confluent" \
+    KAFKA_LOGS="/var/log/kafka" \
+    KAFKA_LOG_DIRS="/var/lib/kafka"
 
 COPY kafka-docker.sh /usr/local/bin/
 
-RUN groupadd -r ${CONFLUENT_GROUP} &&\
-    useradd -r -g ${CONFLUENT_GROUP} ${CONFLUENT_USER} &&\
-    mkdir -p ${KAFKA_LOG_DIRS} ${KAFKA_LOGS} &&\
-    chown -R ${CONFLUENT_USER}:${CONFLUENT_GROUP} ${KAFKA_LOG_DIRS} ${KAFKA_LOGS} /etc/kafka/server.properties /usr/local/bin/kafka-docker.sh &&\
-    chmod +x /usr/local/bin/kafka-docker.sh
+RUN apt-get update -qy \
+ && apt-get install -qy confluent-kafka-${SCALA_VERSION}=${KAFKA_VERSION}-1 \
+ && groupadd -r ${CONFLUENT_GROUP} \
+ && useradd -r -g ${CONFLUENT_GROUP} ${CONFLUENT_USER} \
+ && mkdir -p ${KAFKA_LOG_DIRS} ${KAFKA_LOGS} \
+ && chown -R ${CONFLUENT_USER}:${CONFLUENT_GROUP} ${KAFKA_LOG_DIRS} ${KAFKA_LOGS} /etc/kafka/server.properties /usr/local/bin/kafka-docker.sh \
+ && chmod +x /usr/local/bin/kafka-docker.sh
 
 
 USER ${CONFLUENT_USER}
