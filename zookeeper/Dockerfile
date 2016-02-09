@@ -6,7 +6,7 @@ ENV ZK_DATA_DIR="/var/lib/zookeeper" \
 COPY zk-docker.sh /usr/local/bin/
 COPY zk-log4j.properties /etc/kafka/
 
-# assume root user in order to mkdir
+# assume root user in order to mkdir. confluent-kafka sets USER to confluent.
 USER root
 RUN mkdir ${ZK_DATA_DIR} \
  && chown -R ${CONFLUENT_GROUP}:${CONFLUENT_USER} ${ZK_DATA_DIR} /usr/local/bin/zk-docker.sh /etc/kafka/zookeeper.properties /etc/kafka/zk-log4j.properties \
