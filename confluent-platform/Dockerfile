@@ -1,4 +1,4 @@
-FROM nordstrom/java:8-jre
+FROM nordstrom/java:8
 
 # SCALA_VERSION is used in derived images
 ENV CONFLUENT_MAJOR_VERSION="2.0" \
