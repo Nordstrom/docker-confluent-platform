@@ -1,6 +1,6 @@
 FROM nordstrom/confluent-platform:2.0.1
 
-ENV KAFKA_VERSION="0.9.0.0" \
+ENV KAFKA_VERSION="0.9.0.1" \
     KAFKA_LOGS="/var/log/kafka" \
     KAFKA_LOG_DIRS="/var/lib/kafka"
 
