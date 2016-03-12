@@ -1,4 +1,4 @@
-FROM nordstrom/confluent-platform:2.0
+FROM nordstrom/confluent-platform:2.0.1
 
 COPY schema-registry-docker.sh /usr/local/bin/
 

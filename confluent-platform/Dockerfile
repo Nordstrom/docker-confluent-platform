@@ -1,7 +1,7 @@
 FROM nordstrom/java:8
 
 # SCALA_VERSION is used in derived images
-ENV CONFLUENT_MAJOR_VERSION="2.0" \
+ENV CONFLUENT_MAJOR_VERSION="2.0.1" \
     SCALA_VERSION="2.11.7" \
     CONFLUENT_USER="confluent" \
     CONFLUENT_GROUP="confluent"

@@ -6,7 +6,7 @@
 #   docker run -it --rm --link zookeeper:zookeeper --link kafka:kafka --link schema-registry:schema_registry \
 #       confluent/tools kafka-avro-console-consumer --property print.key=true --topic test --from-beginning
 
-FROM nordstrom/confluent-platform:2.0
+FROM nordstrom/confluent-platform:2.0.1
 
 COPY confluent-tools.sh /
 ENTRYPOINT ["/confluent-tools.sh"]
