@@ -60,7 +60,7 @@ done
 chown -R "${CONFLUENT_USER}:${CONFLUENT_GROUP}" \
   /etc/kafka/log4j.properties \
   "${KAFKA_LOG_DIRS}" \
-  "${KAFKA_LOGS}" \
+  "${KAFKA_LOGS_DIR}" \
   "${kafka_cfg_file}"
 
 /bin/gosu ${CONFLUENT_USER}:${CONFLUENT_GROUP} /usr/bin/kafka-server-start ${kafka_cfg_file}
