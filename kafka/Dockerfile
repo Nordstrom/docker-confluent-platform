@@ -1,4 +1,4 @@
-FROM nordstrom/confluent-platform:2.0
+FROM nordstrom/confluent-platform:2.0.1
 
 ENV KAFKA_VERSION="0.9.0.0" \
     KAFKA_LOGS="/var/log/kafka" \
