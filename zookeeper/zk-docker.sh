@@ -39,4 +39,9 @@ for var in $(env | grep -v '^zk_cfg_' | grep '^zk_' | sort); do
   echo "${key}=${value}" >> ${ZK_CFG_FILE}
 done
 
-exec /usr/bin/zookeeper-server-start ${ZK_CFG_FILE}
+chown -R ${CONFLUENT_GROUP}:${CONFLUENT_USER} \
+  /etc/kafka/zk-log4j.properties \
+  ${ZK_CFG_FILE} \
+  ${ZK_DATA_DIR}
+
+/bin/gosu ${CONFLUENT_USER}:${CONFLUENT_GROUP} /usr/bin/zookeeper-server-start ${ZK_CFG_FILE}
