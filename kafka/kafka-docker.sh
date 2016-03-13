@@ -58,9 +58,7 @@ for var in $(env | grep '^KAFKA_' | grep -v '^KAFKA_LOGS' | grep -v '^KAFKA_LOG4
 done
 
 chown -R "${CONFLUENT_USER}:${CONFLUENT_GROUP}" \
-  /etc/kafka/server.properties \
   /etc/kafka/log4j.properties \
-  /usr/local/bin/kafka-docker.sh \
   "${KAFKA_LOG_DIRS}" \
   "${KAFKA_LOGS}" \
   "${kafka_cfg_file}"
