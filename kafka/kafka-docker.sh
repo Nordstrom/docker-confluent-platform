@@ -57,6 +57,7 @@ for var in $(env | grep '^KAFKA_' | grep -v '^KAFKA_LOGS' | grep -v '^KAFKA_LOG4
   echo "${key}=${value}" >> ${kafka_cfg_file}
 done
 
+mkdir -p "${KAFKA_LOG_DIRS}" "${KAFKA_LOGS_DIR}"
 chown -R "${CONFLUENT_USER}:${CONFLUENT_GROUP}" \
   /etc/kafka/log4j.properties \
   "${KAFKA_LOG_DIRS}" \
