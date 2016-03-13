@@ -12,15 +12,12 @@ COPY kafka-docker.sh /usr/local/bin/kafka-docker.sh
 COPY log4j.properties /etc/kafka/log4j.properties
 
 RUN mkdir -p ${KAFKA_LOG_DIRS} ${KAFKA_LOGS} \
- && chown -R ${CONFLUENT_USER}:${CONFLUENT_GROUP} \
-      ${KAFKA_LOG_DIRS} \
-      ${KAFKA_LOGS} \
-      /etc/kafka/server.properties \
-      /etc/kafka/log4j.properties \
-      /usr/local/bin/kafka-docker.sh \
  && chmod +x /usr/local/bin/kafka-docker.sh
 
-USER ${CONFLUENT_USER}
+# Defer dropping to unprivileged user until container start-time,
+#   in order to deal with start-time VOLUMES being mounted as root:
+#   https://github.com/kubernetes/kubernetes/issues/2630#issuecomment-156115146
+# USER ${CONFLUENT_USER}
 VOLUME ["${KAFKA_LOG_DIRS}", "${KAFKA_LOGS}"]
 EXPOSE 9092
 

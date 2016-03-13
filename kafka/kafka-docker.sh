@@ -57,4 +57,12 @@ for var in $(env | grep '^KAFKA_' | grep -v '^KAFKA_LOGS' | grep -v '^KAFKA_LOG4
   echo "${key}=${value}" >> ${kafka_cfg_file}
 done
 
-exec /usr/bin/kafka-server-start ${kafka_cfg_file}
+chown -R "${CONFLUENT_USER}:${CONFLUENT_GROUP}" \
+  /etc/kafka/server.properties \
+  /etc/kafka/log4j.properties \
+  /usr/local/bin/kafka-docker.sh \
+  "${KAFKA_LOG_DIRS}" \
+  "${KAFKA_LOGS}" \
+  "${kafka_cfg_file}"
+
+/bin/gosu ${CONFLUENT_USER}:${CONFLUENT_GROUP} /usr/bin/kafka-server-start ${kafka_cfg_file}
