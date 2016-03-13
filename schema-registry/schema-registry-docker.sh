@@ -29,4 +29,6 @@ for var in $(env | grep '^SCHEMA_REGISTRY_' | sort); do
   echo "${key}=${value}" >> ${sr_cfg_file}
 done
 
-exec /usr/bin/schema-registry-start ${sr_cfg_file}
+chown -R "${CONFLUENT_USER}:${CONFLUENT_GROUP}" "${sr_cfg_file}"
+
+/bin/gosu "${CONFLUENT_USER}:${CONFLUENT_GROUP}" /usr/bin/schema-registry-start "${sr_cfg_file}"

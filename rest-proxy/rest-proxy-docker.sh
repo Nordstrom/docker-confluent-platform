@@ -34,4 +34,6 @@ done
 # Fix for issue #77, PR #78: https://github.com/confluentinc/kafka-rest/pull/78/files
 sed -i 's/\"kafka\"//' /usr/bin/kafka-rest-run-class
 
-exec /usr/bin/kafka-rest-start ${rp_cfg_file}
+chown -R "${CONFLUENT_USER}:${CONFLUENT_GROUP}" "${rp_cfg_file}"
+
+/bin/gosu "${CONFLUENT_USER}:${CONFLUENT_GROUP}" /usr/bin/kafka-rest-start "${rp_cfg_file}"
