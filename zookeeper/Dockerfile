@@ -9,7 +9,6 @@ COPY zk-log4j.properties /etc/kafka/
 
 RUN chmod +x /usr/local/bin/zk-docker.sh
 
-USER ${CONFLUENT_USER}
 VOLUME ["${zk_dataDir}","${zk_dataLogDir}"]
 
 # Expose client port (2188/tcp), peer connection port (2888/tcp), leader election port (3888/tcp)
