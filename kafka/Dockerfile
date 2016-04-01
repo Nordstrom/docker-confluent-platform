@@ -3,7 +3,8 @@ FROM quay.io/nordstrom/confluent-platform:2.0.1
 ENV KAFKA_VERSION="0.9.0.1" \
     LOG_DIR="/var/log/kafka" \
     KAFKA_LOG_DIRS="/var/lib/kafka" \
-    KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
+    KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/log4j.properties" \
+    JMX_PORT=1099
 
 RUN apt-get update -qy \
  && apt-get install -qy confluent-kafka-${SCALA_VERSION}=${KAFKA_VERSION}-1
@@ -18,6 +19,6 @@ RUN chmod +x /usr/local/bin/kafka-docker.sh
 #   https://github.com/kubernetes/kubernetes/issues/2630#issuecomment-156115146
 # USER ${CONFLUENT_USER}
 VOLUME ["${KAFKA_LOG_DIRS}", "${LOG_DIR}"]
-EXPOSE 9092
+EXPOSE 9092 1099
 
 ENTRYPOINT ["/usr/local/bin/kafka-docker.sh"]
