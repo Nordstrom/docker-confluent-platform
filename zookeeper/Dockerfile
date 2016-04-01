@@ -1,4 +1,4 @@
-FROM nordstrom/confluent-kafka:0.9
+FROM quay.io/nordstrom/confluent-kafka:0.9.0.1
 
 ENV ZK_DATA_DIR="/var/lib/zookeeper" \
     KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/zk-log4j.properties"

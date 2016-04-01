@@ -1,4 +1,4 @@
-FROM nordstrom/confluent-platform:2.0.1
+FROM quay.io/nordstrom/confluent-platform:2.0.1
 
 ENV KAFKA_VERSION="0.9.0.1" \
     LOG_DIR="/var/log/kafka" \
