@@ -1,4 +1,4 @@
-FROM nordstrom/confluent-kafka:0.9.0.1
+FROM quay.io/nordstrom/confluent-kafka:0.9.0.1
 
 ENV zk_dataDir="/var/lib/zookeeper" \
     zk_dataLogDir="/var/run/zookeeper" \

@@ -1,4 +1,4 @@
-FROM nordstrom/confluent-platform:2.0.1
+FROM quay.io/nordstrom/confluent-platform:2.0.1
 
 COPY rest-proxy-docker.sh /usr/local/bin/
 
