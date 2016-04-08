@@ -40,4 +40,4 @@ done
 
 chown -R "${CONFLUENT_USER}:${CONFLUENT_GROUP}" "${kc_cfg_file}"
 
-/bin/gosu "${CONFLUENT_USER}:${CONFLUENT_GROUP}" /usr/bin/connect-distributed "${kc_cfg_file}"
+/bin/gosu "${CONFLUENT_USER}:${CONFLUENT_GROUP}" /usr/bin/connect-distributed "${kc_cfg_file}" "$@"
