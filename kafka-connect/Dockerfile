@@ -8,8 +8,13 @@ RUN chmod +x /usr/local/bin/kafka-connect-docker.sh
 # seems that the start script for connect is packaged with Kafka, while the classes
 # (e.g., io.confluent.connect.avro.AvroConverter) are packaged with the schema registry
 RUN apt-get update -qy \
- && apt-get install -qy confluent-schema-registry
+ && apt-get install -qy \
+     confluent-schema-registry \
+     confluent-kafka-connect-jdbc \
+     confluent-kafka-connect-hdfs
 
 EXPOSE 8083
+
+USER confluent:confluent
 
 ENTRYPOINT ["/usr/local/bin/kafka-connect-docker.sh"]
