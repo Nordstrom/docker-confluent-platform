@@ -9,9 +9,7 @@ RUN chmod +x /usr/local/bin/kafka-connect-docker.sh
 # (e.g., io.confluent.connect.avro.AvroConverter) are packaged with the schema registry
 RUN apt-get update -qy \
  && apt-get install -qy \
-     confluent-schema-registry \
-     confluent-kafka-connect-jdbc \
-     confluent-kafka-connect-hdfs
+      confluent-kafka-connect-jdbc
 
 COPY jmx_exporter_config.yaml /
 
