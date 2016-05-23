@@ -19,3 +19,6 @@ RUN curl -o /tmp/gosu -fsSL "https://github.com/tianon/gosu/releases/download/1.
  && sha256sum -c /tmp/gosu.sha256 \
  && chmod +x /tmp/gosu \
  && mv /tmp/gosu /bin/gosu
+
+COPY jmx_prometheus_javaagent.jar /jmx_prometheus_javaagent.jar
+COPY jmx_exporter_config.yaml /

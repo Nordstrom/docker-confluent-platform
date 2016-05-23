@@ -6,6 +6,7 @@ ENV zk_dataDir="/var/lib/zookeeper" \
 
 COPY zk-docker.sh /usr/local/bin/
 COPY zk-log4j.properties /etc/kafka/
+COPY jmx_exporter_config.yaml /
 
 RUN chmod +x /usr/local/bin/zk-docker.sh
 

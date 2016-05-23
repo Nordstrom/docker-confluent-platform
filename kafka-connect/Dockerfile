@@ -1,4 +1,4 @@
-FROM quay.io/nordstrom/confluent-kafka:0.9.0.1
+FROM quay.io/nordstrom/confluent-kafka:0.9.0.1-1
 
 COPY connect-avro-distributed.properties /etc/kafka-connect/kafka-connect.properties
 COPY kafka-connect-docker.sh /usr/local/bin/
@@ -13,8 +13,9 @@ RUN apt-get update -qy \
      confluent-kafka-connect-jdbc \
      confluent-kafka-connect-hdfs
 
-EXPOSE 8083
+COPY jmx_exporter_config.yaml /
 
 USER confluent:confluent
+EXPOSE 8083
 
 ENTRYPOINT ["/usr/local/bin/kafka-connect-docker.sh"]

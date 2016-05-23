@@ -6,6 +6,8 @@ RUN apt-get update -qy \
  && apt-get install -qy confluent-schema-registry \
  && chmod +x /usr/local/bin/schema-registry-docker.sh
 
+COPY jmx_exporter_config.yaml /
+
 EXPOSE 8081
 
 ENTRYPOINT ["/usr/local/bin/schema-registry-docker.sh"]

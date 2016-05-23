@@ -1,0 +1,19 @@
+.PHONY: build/image tag/image push/image
+
+build/image: Dockerfile jmx_prometheus_javaagent.jar
+	docker build -t $(container_name) .
+
+tag/image: build/image
+	docker tag $(container_name) $(container_registry)/$(container_name):$(container_release)
+
+push/image: tag/image
+	docker push $(container_registry)/$(container_name):$(container_release)
+
+jmx_prometheus_javaagent.jar: $(project_root)/jmx_exporter/jmx_prometheus_javaagent/target/jmx_prometheus_javaagent-0.7-SNAPSHOT.jar
+	cp $< $@
+
+$(project_root)/jmx_exporter/jmx_prometheus_javaagent/target/jmx_prometheus_javaagent-0.7-SNAPSHOT.jar:
+	cd $(project_root)/jmx_exporter; mvn package
+
+$(project_root)/jmx_exporter:
+	cd $(project_root); git submodule update
