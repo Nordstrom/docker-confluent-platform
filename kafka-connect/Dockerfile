@@ -15,7 +15,6 @@ RUN apt-get update -qy \
 
 COPY jmx_exporter_config.yaml /
 
-USER confluent:confluent
 EXPOSE 8083
 
 ENTRYPOINT ["/usr/local/bin/kafka-connect-docker.sh"]
