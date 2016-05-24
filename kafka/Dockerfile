@@ -1,6 +1,6 @@
-FROM quay.io/nordstrom/confluent-platform:2.0.1-1
+FROM quay.io/nordstrom/confluent-platform:3.0.0-0
 
-ENV KAFKA_VERSION="0.9.0.1" \
+ENV KAFKA_VERSION="0.10.0.0" \
     LOG_DIR="/var/log/kafka" \
     KAFKA_LOG_DIRS="/var/lib/kafka" \
     KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/log4j.properties" \

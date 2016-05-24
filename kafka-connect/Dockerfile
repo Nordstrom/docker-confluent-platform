@@ -1,4 +1,4 @@
-FROM quay.io/nordstrom/confluent-kafka:0.9.0.1-1
+FROM quay.io/nordstrom/confluent-kafka:0.10.0.0-0
 
 COPY connect-avro-distributed.properties /etc/kafka-connect/kafka-connect.properties
 COPY kafka-connect-docker.sh /usr/local/bin/

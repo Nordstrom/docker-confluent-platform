@@ -1,6 +1,6 @@
 container_name := zookeeper
 container_registry := quay.io/nordstrom
-container_release := 3.4.6-1
+container_release := 3.4.6-2
 
 project_root := $(realpath $(PWD)/..)
 
