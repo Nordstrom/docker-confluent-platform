@@ -1,7 +1,11 @@
 .PHONY: build/image tag/image push/image
 
+proxy_url := http://webproxysea.nordstrom.net:8181
+build_args := --build-arg http_proxy=$(proxy_url) --build-arg https_proxy=$(proxy_url)
+
 build/image: Dockerfile jmx_prometheus_javaagent.jar
-	docker build -t $(container_name) .
+build/image:
+	docker build $(build_args) -t $(container_name) .
 
 tag/image: build/image
 	docker tag $(container_name) $(container_registry)/$(container_name):$(container_release)

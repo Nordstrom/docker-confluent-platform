@@ -1,6 +1,6 @@
 container_name := confluent-kafka-connect
 container_registry := quay.io/nordstrom
-container_release := 2.0.1-1
+container_release := 2.0.1-2
 
 project_root := $(realpath $(PWD)/..)
 

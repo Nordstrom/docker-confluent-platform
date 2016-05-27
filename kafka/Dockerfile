@@ -1,4 +1,4 @@
-FROM quay.io/nordstrom/confluent-platform:2.0.1-1
+FROM quay.io/nordstrom/confluent-platform:2.0.1-2
 
 ENV KAFKA_VERSION="0.9.0.1" \
     LOG_DIR="/var/log/kafka" \
@@ -8,14 +8,10 @@ ENV KAFKA_VERSION="0.9.0.1" \
     JMX_PORT=1099 \
     JMX_EXPORTER_PORT=1100
 
-RUN apt-get update -qy \
- && apt-get install -qy confluent-kafka-${SCALA_VERSION}=${KAFKA_VERSION}-1
-
-COPY kafka-docker.sh /usr/local/bin/kafka-docker.sh
 COPY log4j.properties /etc/kafka/log4j.properties
 COPY jmx_exporter_config.yaml /
-
-RUN chmod +x /usr/local/bin/kafka-docker.sh
+COPY kafka-docker.sh /usr/bin/kafka-docker.sh
+RUN chmod +x /usr/bin/kafka-docker.sh
 
 # Defer dropping to unprivileged user until container start-time,
 #   in order to deal with start-time VOLUMES being mounted as root:
@@ -24,4 +20,4 @@ RUN chmod +x /usr/local/bin/kafka-docker.sh
 VOLUME ["${KAFKA_LOG_DIRS}", "${LOG_DIR}"]
 EXPOSE 9092 1099 1100
 
-ENTRYPOINT ["/usr/local/bin/kafka-docker.sh"]
+ENTRYPOINT ["/usr/bin/kafka-docker.sh"]

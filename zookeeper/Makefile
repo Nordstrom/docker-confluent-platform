@@ -1,4 +1,4 @@
-container_name := zookeeper
+container_name := confluent-zookeeper
 container_registry := quay.io/nordstrom
 container_release := 3.4.6-1
 
