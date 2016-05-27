@@ -1,6 +1,6 @@
 container_name := confluent-platform
 container_registry := quay.io/nordstrom
-container_release := 2.0.1-1
+container_release := 2.0.1-2
 CONFLUENT_PLATFORM_MAJOR_VERSION=2.0
 CONFLUENT_PLATFORM_VERSION=2.0.1
 SCALA_VERSION=2.11.7
