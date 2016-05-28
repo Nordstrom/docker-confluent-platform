@@ -1,6 +1,7 @@
 #!/bin/bash
 
 kc_cfg_file="/etc/kafka-connect/kafka-connect.properties"
+mkdir -p $(dirname "${kc_cfg_file}")
 
 export KAFKA_CONNECT_REST_PORT=${KAFKA_CONNECT_REST_PORT:-8083}
 export KAFKA_CONNECT_CLIENT_ID=${KAFKA_CONNECT_CLIENT_ID:-$HOSTNAME}
